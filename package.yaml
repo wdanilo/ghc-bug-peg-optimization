@@ -1,0 +1,64 @@
+name:                test
+version:             0.1.0.0
+github:              "githubuser/general"
+license:             BSD3
+author:              "Author name here"
+maintainer:          "example@example.com"
+copyright:           "2018 Author name here"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/githubuser/general#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+
+executables:
+  test:
+    main:                Main.hs
+    source-dirs:         src
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    - -with-rtsopts=-T
+    - -O2
+    - -Wall
+    - -Wno-name-shadowing
+    - -fexcess-precision
+    - -fexpose-all-unfoldings
+    - -flate-dmd-anal
+    - -fmax-worker-args=1000
+    - -fsimpl-tick-factor=200
+    - -fspec-constr-keen
+    - -fspecialise-aggressively
+    - -fstatic-argument-transformation
+    - -funbox-strict-fields
+
+    dependencies:
+    - base
+    - criterion
+    - containers
+    - text
+    - deepseq
+
+tests:
+  general-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - general
+
