@@ -8,7 +8,6 @@ module Main where
 import qualified Data.Set  as Set
 import qualified Data.Text as Text
 
-import Criterion.Measurement (initializeTime)
 import Data.Set              (Set)
 import Data.Text             (Text)
 import System.IO             (BufferMode (NoBuffering), hSetBuffering, stdout)

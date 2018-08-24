@@ -46,7 +46,6 @@ executables:
 
     dependencies:
     - base
-    - criterion
     - containers
     - text
     - deepseq
