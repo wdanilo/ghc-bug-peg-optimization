@@ -14,9 +14,10 @@ import Data.Text             (Text)
 import System.IO             (BufferMode (NoBuffering), hSetBuffering, stdout)
 import Control.DeepSeq       (NFData)
 import GHC.Generics          (Generic)
-
-import Criterion
-import Criterion.Main
+import Control.Exception     (evaluate)
+import System.CPUTime        (getCPUTime)
+import Control.DeepSeq       (force)
+import System.Environment    (getArgs)
 
 
 --------------------------------
@@ -24,7 +25,7 @@ import Criterion.Main
 --------------------------------
 
 iters :: Int
-iters = 100000
+iters = 100000000
 
 src1 :: Text
 src1 = Text.replicate iters "test"
@@ -111,10 +112,16 @@ test2 src = let
 
 main :: IO ()
 main = do
+    (a:_) <- getArgs
+    let option = read a :: Int
     hSetBuffering stdout NoBuffering
-    defaultMain
-        [ env (pure src1) (\(~src) -> bench "test0" $ nf test0 src)
-        , env (pure src1) (\(~src) -> bench "test1" $ nf test1 src)
-        , env (pure src1) (\(~src) -> bench "test2" $ nf test2 src)
-        , env (pure src1) (\(~src) -> bench "native" $ nf native src)
-        ]
+    let f = case option of
+            0 -> test0
+            1 -> test1
+            2 -> test2
+    srcx <- evaluate $ force src1
+    t1 <- getCPUTime
+    evaluate $ force $ f srcx
+    t2 <- getCPUTime
+    print $ (fromIntegral (t2 - t1) / 1000000000)
+    pure ()

@@ -1,8 +1,8 @@
--- This file has been generated from package.yaml by hpack version 0.20.0.
+-- This file has been generated from package.yaml by hpack version 0.28.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 49c9bf79b5df908fbee12704a8bde25411fb60d9a832a1988e6557d7d1b3f55e
+-- hash: 852b1921288d3e2544dbcae782b4627256a504f9d2e077544b23b2281c81c26c
 
 name:           test
 version:        0.1.0.0
@@ -16,7 +16,6 @@ license:        BSD3
 license-file:   LICENSE
 build-type:     Simple
 cabal-version:  >= 1.10
-
 extra-source-files:
     ChangeLog.md
     README.md
@@ -35,6 +34,7 @@ executable test
     , containers
     , criterion
     , deepseq
+    , lens
     , text
   other-modules:
       Paths_test

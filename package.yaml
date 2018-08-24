@@ -50,6 +50,7 @@ executables:
     - containers
     - text
     - deepseq
+    - lens
 
 tests:
   general-test:
